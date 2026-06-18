@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <title>Document</title>
+
+</head>
+<body class="bg-light m-0 p-0">
+<div id="conteudo-painel" class="d-none flex-column align-items-center vh-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-body-secondary w-100 px-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Todo List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-4 fw-bold">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Painel</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a onclick="fazerLogout()"class="nav-link text-danger" href="login.html">Sair</a>
+                    </li>
+                </ul>
+                <form id="formBusca" class="d-flex ms-auto" role="search">
+                <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search" id="buscarAtividade">
+                <button class= "btn btn-success fw-bold" type="submit">Buscar</button>
+            </form>
+            </div>
+        </div>
+  </nav>
+<div class="content-wrapper d-flex flex-column align-items-center w-100 mt-5">
+    <h2 class="mt-4">LISTA DE TAREFAS</h2>
+ <div class="container w-75 ">
+
+   <table class="table table-bordered table-striped text-center align-middle">
+    <tr >
+    <th>Titulo</th>
+    <th>Descrição</th>
+    <th>Status</th>
+    <th> Editar | Excluir</th>
+
+    </tr>
+    <tbody id="body_table"></tbody>
+  </table>
+
+  <div class="d-flex justify-content-center gap-2 mt-4 ">
+  <a href="atividade_cadastro.html" class="btn btn-success fw-bold">
+    Cadastrar
+</a>
+  </div>
+ </div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</div>
+</body>
+<script src="painel_usu.js"></script>
+</html>
