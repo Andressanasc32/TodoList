@@ -79,8 +79,10 @@ def view_tarefas(id_usuario:int,db: Session= Depends(get_db)):
     return tarefas
 
 @app.delete("/delete_atividade")
-def delete_atividade(id_tarefa:int,db: Session = Depends(get_db)):
-    atividade_deletada=db.query(models.Tarefas).filter(models.Tarefas.id_tarefas==id_tarefa).first()
+def delete_atividade(id_usuario:int,id_tarefa:int,db: Session = Depends(get_db)):
+    atividade_deletada=db.query(models.Tarefas).filter(
+        models.Tarefas.id_tarefa==id_tarefa,
+        models.Tarefas.usuario_id==id_usuario).first()
     if not atividade_deletada:
         raise HTTPException(status_code=404, detail="erro ao deletar")
     db.delete(atividade_deletada)
@@ -89,7 +91,7 @@ def delete_atividade(id_tarefa:int,db: Session = Depends(get_db)):
 
 @app.patch('/atualizar_atividade', response_model=schemas.TarefasResponse)
 def atualizar_atividade(atividade:schemas.UpdateTarefa,id_usuario:int,id_atividade:int,db: Session = Depends(get_db)):
-    busca_atividade=db.query(models.Tarefas).filter(models.Tarefas.id_tarefas==id_atividade).first()
+    busca_atividade=db.query(models.Tarefas).filter(models.Tarefas.id_tarefa==id_atividade).first()
     
     if not busca_atividade:
         raise HTTPException(status_code=404, detail="Atividade não encontrada")
@@ -98,7 +100,7 @@ def atualizar_atividade(atividade:schemas.UpdateTarefa,id_usuario:int,id_ativida
         busca_ativ_duplicada=db.query(models.Tarefas).filter( 
             models.Tarefas.usuario_id==id_usuario,
             func.lower(models.Tarefas.titulo)==func.lower(atividade.titulo.strip()),
-            models.Tarefas.id_tarefas!=id_atividade).first()
+            models.Tarefas.id_tarefa!=id_atividade).first()
         
         if busca_ativ_duplicada:
           raise HTTPException(status_code=404, detail="Essa atividade já está cadastrada!.")

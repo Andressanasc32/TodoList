@@ -62,20 +62,20 @@ function montarTabela(tarefas) {
             tarefas.forEach(tarefa => {
         // Cria uma linha para cada tarefa vinda do Python
             const linha = `
-             <tr id="linha-${tarefa.id_tarefas}">
+             <tr id="linha-${tarefa.id_tarefa}">
                  <td class="titulo-celula">${tarefa.titulo}</td>
                  <td class="descricao-celula">${tarefa.descricao}</td>
                 <td class="status-celula">${tarefa.status}</td>
           <td class="d-flex justify-content-center gap-3">       
     <button type="button" 
             class="btn btn-link text-secondary p-0 border-0 fs-4" 
-            onclick="entrarEmModoEdicao(${tarefa.id_tarefas})">
+            onclick="entrarEmModoEdicao(${tarefa.id_tarefa})">
         <ion-icon name="pencil-outline"></ion-icon>
     </button>
     
     <button type="button" 
             class="btn btn-link text-danger p-0 border-0 fs-4" 
-            onclick="deletarAtividade(${tarefa.id_tarefas})">
+            onclick="deletarAtividade(${tarefa.id_tarefa})">
         <ion-icon name="trash-outline"></ion-icon> 
     </button>
   </td>
@@ -131,8 +131,9 @@ async function listarTodasAsAtividades() {
 async function deletarAtividade(idTarefa){
 const confirmar = confirm("Tem certeza que deseja excluir esta atividade?");
     if (!confirmar) return;
+    const idUsuario=localStorage.getItem('id_usuario');
     try{
-        const resposta=await fetch(`http://localhost:8000/delete_atividades?id_tarefa=${idTarefa}`,{
+        const resposta=await fetch(`http://localhost:8000/delete_atividades?id_usuario=${idUsuario}&id_tarefa=${idTarefa}`,{
             method:'DELETE',
         });
         if (resposta.ok){
@@ -143,7 +144,7 @@ const confirmar = confirm("Tem certeza que deseja excluir esta atividade?");
             alert(`Erro ao deletar: ${erro.detail || 'Não foi possível excluir.'}`);
         }
     }catch(error){
-        console.erro('Erro na requisição delete:',error);
+        console.error('Erro na requisição delete:',error);
         alert("Não foi possível conectar ao servidor.");
     }
 }

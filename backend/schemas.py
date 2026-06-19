@@ -22,7 +22,7 @@ class CreateTarefa(BaseModel):
     descricao:Optional[str]=None 
     status:Optional[str]="Pendente"
 class TarefasResponse(BaseModel):
-    id_tarefas:int
+    id_tarefa:int
     titulo:str
     descricao:Optional[str]=None
     status:str
