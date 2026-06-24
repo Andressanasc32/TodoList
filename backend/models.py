@@ -11,7 +11,7 @@ class Usuarios(Base):
     tarefas=relationship("Tarefas",back_populates="usuario",cascade="all, delete-orphan")
 class Tarefas(Base):
     __tablename__='tarefas'
-    id_tarefa=Column(Integer,primary_key=True,index=True)
+    id_tarefas=Column(Integer,primary_key=True,index=True)
     titulo=Column(String)
     descricao=Column(String)
     status=Column(String)
