@@ -27,13 +27,13 @@ form.addEventListener('submit', async (event) => {
        });
  
         if (resposta.status===404){
-        alert("Ops! Este e-mail não está cadastrado. Verifique o que digitou ou crie uma conta.");
-         form.reset()// Seu reset que já funciona!
+         alert("Ops! Este e-mail não está cadastrado. Verifique o que digitou ou crie uma conta.");
+         form.reset();// Seu reset que já funciona!
          return;
         }
        if (resposta.status===401){
         alert("Ops! Senha incorreto!.");
-       // form.reset()// Seu reset que já funciona!
+        form.reset();
         return;
         }
       
