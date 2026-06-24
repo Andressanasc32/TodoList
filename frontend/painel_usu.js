@@ -133,7 +133,7 @@ const confirmar = confirm("Tem certeza que deseja excluir esta atividade?");
     if (!confirmar) return;
     const idUsuario=localStorage.getItem('id_usuario');
     try{
-        const resposta=await fetch(`http://localhost:8000/delete_atividades?id_usuario=${idUsuario}&id_tarefa=${idTarefa}`,{
+        const resposta=await fetch(`http://localhost:8000/delete_atividade?id_usuario=${idUsuario}&id_tarefa=${idTarefa}`,{
             method:'DELETE',
         });
         if (resposta.ok){

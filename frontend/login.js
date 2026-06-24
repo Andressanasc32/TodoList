@@ -1,8 +1,8 @@
-const usuarioLogado = localStorage.getItem('id_usuario');
+/*const usuarioLogado = localStorage.getItem('id_usuario');
 if(usuarioLogado){
     window.location.href="painel.html"
 }
-
+*/
 const form=document.getElementById("formlogin");
 
 form.addEventListener('submit', async (event) => {
@@ -18,7 +18,7 @@ form.addEventListener('submit', async (event) => {
 };
  try {
         // 5. Fazemos o disparo (fetch) para a rota do seu backend FastAPI
-        const resposta = await fetch('http://localhost:8000/login_usuario', {
+        const resposta = await fetch(`http://localhost:8000/login_usuario`, {
             method: 'POST', // Método HTTP correspondente à rota @app.post
             headers: {
                 'Content-Type': 'application/json' // Avisa a API que estamos enviando um JSON
@@ -41,10 +41,11 @@ form.addEventListener('submit', async (event) => {
         // Salva o ID do usuário na memória do navegador para usar depois
      
         localStorage.setItem('id_usuario',usuarioLogado.id_usuario);
-        localStorage.setItem('nome',usuarioLogado.nome)
-        window.location.href="painel_usuario.html"
+        localStorage.setItem('nome',usuarioLogado.nome);
+        window.location.href="painel_usuario.html";
         
     }catch (error) {
         console.error('Erro ao conectar com a API:', error);
         alert('Não foi possível conectar ao servidor. O seu backend FastAPI está ligado?');
-    }});
+    }
+});
