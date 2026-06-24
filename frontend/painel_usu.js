@@ -62,20 +62,20 @@ function montarTabela(tarefas) {
             tarefas.forEach(tarefa => {
         // Cria uma linha para cada tarefa vinda do Python
             const linha = `
-             <tr id="linha-${tarefa.id_tarefa}">
+             <tr id="linha-${tarefa.id_tarefas}">
                  <td class="titulo-celula">${tarefa.titulo}</td>
                  <td class="descricao-celula">${tarefa.descricao}</td>
                 <td class="status-celula">${tarefa.status}</td>
           <td class="d-flex justify-content-center gap-3">       
     <button type="button" 
             class="btn btn-link text-secondary p-0 border-0 fs-4" 
-            onclick="entrarEmModoEdicao(${tarefa.id_tarefa})">
+            onclick="entrarEmModoEdicao(${tarefa.id_tarefas})">
         <ion-icon name="pencil-outline"></ion-icon>
     </button>
     
     <button type="button" 
             class="btn btn-link text-danger p-0 border-0 fs-4" 
-            onclick="deletarAtividade(${tarefa.id_tarefa})">
+            onclick="deletarAtividade(${tarefa.id_tarefas})">
         <ion-icon name="trash-outline"></ion-icon> 
     </button>
   </td>
